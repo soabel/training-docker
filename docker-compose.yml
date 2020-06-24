@@ -1,0 +1,32 @@
+version: '3'
+
+services:
+  database:
+    image: mongo:latest
+    container_name: db-mongo
+    # volumes:
+  todo-service:
+    build: 
+      context: .
+      dockerfile: ./todo-services/Dockerfile
+    container_name: todo-service
+    links:
+    - database
+    # environment:
+
+    depends_on:
+    - database
+
+  todo-app:
+    build: 
+        context: .
+        dockerfile: ./todo-app/Dockerfile
+    container_name: todo-app
+    links:
+     - todo-service
+    # environment:
+    depends_on:
+      - todo-service
+
+# volumes:
+#   mongo: {}
