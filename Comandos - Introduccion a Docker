@@ -1,0 +1,73 @@
+
+# Construir imagen
+docker build -t demoapp-dev -f .\DemoApp\Dockerfile .	
+
+docker build -t demo-docker-dev -f .\demo-docker\Dockerfile .	
+
+# Ejecutar contenedor
+docker run -d -p 8080:80 --name nginx nginx
+
+docker run -d -p 8082:80 --name demoapp-dev demoapp-dev
+docker run -d -p 8082:80 --name demo-docker-dev demo-docker-dev
+
+docker run -d -p 8082:80 --name demo-docker-dev demo-docker-dev:0.1
+
+# Escuchar eventos
+docker events 
+
+# Ver logs
+docker logs
+
+# Listar conetedores
+docker ps
+docker ps -a
+docker ps -a | grep Demo
+
+# Detener, iniciar, eliminar
+docker stop
+docker start
+docker rm
+
+# Ejecutar comandos
+docker exec -it
+
+# Estadísticas de consumo de recursos
+docker stats
+
+# Operaciones sobre imágenes
+docker image ls
+docker image rm
+docker image prune -f
+
+# Operaciones Redes
+docker network ls
+
+# Operaciones sobre volúmenes
+docker volume ls
+
+# Ver eventos
+docker events --filter 'type=container' --format 'Type={{.Type}}  Status={{.Status}}  ID={{.ID}}'
+
+
+PLATAFORMA DE ESTUDIO
+https://labs.play-with-docker.com/
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
